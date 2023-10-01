@@ -22,6 +22,8 @@ export async function PATCH( req: Request,{params} : {params : {storeId : string
                 name: name,
             }
         })
+        return NextResponse.json(store)
+
     }catch(e){
         console.log('[Store Mutation]', e)
         return new NextResponse("Internal Error", {status : 500 })
@@ -37,13 +39,13 @@ export async function DELETE( _req: Request,{params} : {params : {storeId : stri
         if(!userId) return new NextResponse("Unauthorized", {status: 400})
         if(!params.storeId) return new  NextResponse("Store id is required", {status:400 })
 
-        const store = await prismadb.store.deleteMany({
+        await prismadb.store.deleteMany({
             where :{
                 id: params.storeId,
                 userId
             }
         })
-    }catch(e){
+        }catch(e){
         console.log('[Store Mutation]', e)
         return new NextResponse("Internal Error", {status : 500 })
     }

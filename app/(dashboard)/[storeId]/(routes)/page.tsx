@@ -5,7 +5,7 @@ type Props = {}
 
 const DashboardPage = (props: Props) => {
   return (
-    <div><Navbar/></div>
+    <div></div>
   )
 }
 
