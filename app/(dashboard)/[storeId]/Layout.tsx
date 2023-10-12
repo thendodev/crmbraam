@@ -18,7 +18,7 @@ export default async function Layout({
   children,
   params
 }: {
-  children: React.ReactNode,
+  children: React.ReactElement,
   params: {storeId: string}
 }) {
     
@@ -42,11 +42,8 @@ export default async function Layout({
 
   return (
     <>
-    <Navbar/>
+    <Navbar />
     {children}
     </>
-          
-        
-
   )
 }
