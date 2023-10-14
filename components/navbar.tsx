@@ -9,17 +9,15 @@ type Props = {}
 
 const Navbar = async (props: Props) => {
 
-//   const {userId} = auth();
+  const {userId} = auth();
 
-//   if(!userId) return;
 
-// const store = await prismadb.store.findMany({
-//     where:{
-//       userId
-//     }
-//   });
+const store = userId ? await prismadb.store.findMany({
+    where:{
+      userId
+    }
+  }) : null; 
 
-  // if(!store) return redirect("/")
 
   return (
 <div className='border-b'>

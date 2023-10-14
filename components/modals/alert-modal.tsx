@@ -14,6 +14,7 @@ import {
 import { toast } from '../ui/use-toast'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
+import { Modal } from '../ui/modal'
 
 
 interface AlertModalProps {
@@ -33,35 +34,21 @@ const AlertModal = ({isOpen,onClose,onConfirm,loading}: AlertModalProps) => {
   if(!isMounted) return null;
   
 
-  const onContinue = async ()=>{
-    try{
-            axios.delete(`api/stores/${params.storeId}`);
-            router.refresh();
-            router.push("/");
-    }catch(e){
-        toast({description:"something went wrong"})
-    }
-  }
-
 
     return ( 
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="outline">Show Dialog</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+      <Modal
+      title="Are you sure?"
+      description="This action cannot be undone."
+      isOpen={isOpen}
+      onClose={onClose}
+    >
+      <div className="pt-6 space-x-2 flex items-center justify-end w-full">
+        <Button disabled={loading} variant="outline" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button disabled={loading} variant="destructive" onClick={onConfirm}>Continue</Button>
+      </div>
+    </Modal>
   )
 }
 

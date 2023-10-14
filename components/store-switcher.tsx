@@ -13,22 +13,24 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger> & React.HTMLAttributes<HTMLInputElement>
 
 interface SwitcherProps extends PopoverTriggerProps {
-    items : Store[]
+    items : Store[] | null
 };
 
-export default function Switcher({className, items =[]} : SwitcherProps){
+export default function Switcher({className, items} : SwitcherProps){
+
+
         const storeModal = useStoreModal();
         const params = useParams();
         const [open, setOpen] = useState<boolean>();
          
-        const formattedItems = items.map(item => (
+        const formattedItems = items?.map(item => (
             {
                 label : item.name,
                 value : item.id
             }
         ))
 
-        const currentStore  = formattedItems.find(i=>i.value === params.storeId);
+        const currentStore  = formattedItems?.find(i=>i.value === params.storeId);
         const onStoreSelect = (store: {value : string, label : string})=> {
             setOpen(false)
             redirect(`/${store.value}`)
@@ -56,7 +58,7 @@ export default function Switcher({className, items =[]} : SwitcherProps){
                     <CommandEmpty>No Store Found</CommandEmpty>
                     <CommandGroup heading="Stores">
                         {
-                            formattedItems.map(i=>{
+                            formattedItems?.map(i=>{
                                 return <CommandItem 
                                             key={i.value}
                                             onSelect={onStoreSelect(i)}

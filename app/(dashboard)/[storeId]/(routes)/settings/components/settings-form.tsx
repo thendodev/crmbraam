@@ -1,5 +1,6 @@
 "use client"
 
+import AlertModal from '@/components/modals/alert-modal'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import Heading from '@/components/ui/heading'
@@ -72,6 +73,7 @@ const SettingsForm : React.FC<SettingsFormsProps> = ({initalData}) => {
 
   return (
     <>
+      <AlertModal isOpen={open} onClose={()=>setOpen(false)} onConfirm={onDelete} loading={loading}/>
       <div className='flex items-center justify-between m-2'>
         <Heading
          title="setting"
@@ -88,17 +90,17 @@ const SettingsForm : React.FC<SettingsFormsProps> = ({initalData}) => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}
           className='space-y-8 w-full'>
-              <div className='grid grid-cols-3 gap-8'>
+              <div className='grid grid-cols-3 gap-8 mt-4'>
                 <FormField
-                control={form.control}
-                name="name"
+                  control={form.control}
+                  name="name"
                   render={({field})=>(
                       <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
                           <Input disabled={loading} placeholder='Store Name' {...field} />
-                          <FormMessage /> 
                         </FormControl>
+                        <FormMessage /> 
                       </FormItem>
                   )} />
               </div>

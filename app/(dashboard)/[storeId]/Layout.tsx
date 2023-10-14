@@ -1,4 +1,4 @@
-import './globals.css'
+import '@/app/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ClerkProvider, auth } from '@clerk/nextjs'
@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   description: 'dashboard',
 }
 
-export default async function RootLayout({
+export default async function Layout({
   children,
   params
 }: {
-  children: React.ReactNode,
+  children: React.ReactElement,
   params: {storeId: string}
 }) {
     
@@ -42,11 +42,8 @@ export default async function RootLayout({
 
   return (
     <>
-    <Navbar/>
+    <Navbar />
     {children}
     </>
-          
-        
-
   )
 }
