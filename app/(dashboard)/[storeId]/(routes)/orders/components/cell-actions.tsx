@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import { BillboardColumnProps } from './columns'
+import { OrderColumnProps } from './columns'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Copy, Edit, MoreHorizontal, Trash, WorkflowIcon } from 'lucide-react'
@@ -13,7 +13,7 @@ import AlertModal from '@/components/modals/alert-modal'
 
 
 interface CellActionProps {
-    data : BillboardColumnProps
+    data : OrderColumnProps
 }
 
 const CallActions : React.FC<CellActionProps> = ({data}) => {
