@@ -23,9 +23,6 @@ const OrderClient : React.FC<OrderClientProps> = ({data}) => {
     <>
     <div className='flex items-center justify-between'>
       <Heading title="Orders" description='manage your orders' />
-      <Button onClick={()=>router.push(`/${params.storeId}/orders/new`)}>
-        <Plus className="mr-2 h-4 w-4" /> Add New
-      </Button>
     </div>
     <Separator />
     <DataTable searchKey='label' columns={columns} data={data} />
