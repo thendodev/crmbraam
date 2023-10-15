@@ -1,5 +1,5 @@
 import React from 'react'
-import BillboardClient from './components/order-client'
+import OrderClient from './components/order-client'
 import prismadb from '@/prisma/prismadb'
 import { OrderColumnProps } from './components/columns'
 import { currencyFormmater } from '@/lib/utils'
@@ -40,7 +40,7 @@ const Orders = async ({params }: {params : {storeId : string}}) => {
   return (
     <div className='flex-col'>
         <div className='flex-1 space-y-4 p-8 pt-6'>
-            <BillboardClient data={formattedOrders}/>
+            <OrderClient data={formattedOrders}/>
         </div>
     </div>
   )
