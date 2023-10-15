@@ -2,6 +2,7 @@ import React from 'react'
 import ColorsClient from './components/colors-client'
 import prismadb from '@/prisma/prismadb'
 import { ColorsColumnProps } from './components/columns'
+import { toast } from '@/components/ui/use-toast'
 
 
 const Colors = async ({params }: {params : {storeId : string}}) => {
@@ -13,8 +14,10 @@ const Colors = async ({params }: {params : {storeId : string}}) => {
     orderBy : {
       createdAt : 'desc'
     }
-  })
-
+  }).catch(()=>[]);
+  if(colors.length === 0) {
+    toast({description: "There are no colors yet", title: "info"})
+  }
   const FormattedColors : ColorsColumnProps[] = colors.map((i)=>({
     id : i.id,
     name : i.name,
