@@ -4,6 +4,7 @@ import prismadb from '@/prisma/prismadb'
 import { OrderColumnProps } from './components/columns'
 import { currencyFormmater } from '@/lib/utils'
 import { redirect } from 'next/navigation'
+import { toast } from '@/components/ui/use-toast'
 
 type Props = {}
 
@@ -23,6 +24,9 @@ const Orders = async ({params }: {params : {storeId : string}}) => {
     orderBy : {
       createdAt : 'desc'
     }
+  }).catch(()=>{
+    toast({description:"no orders found", title:"Error"})
+    return [];
   });
 
   const formattedOrders : OrderColumnProps[] = orders.map((i)=>({
