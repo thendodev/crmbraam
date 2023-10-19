@@ -1,3 +1,4 @@
+import { toast } from "@/components/ui/use-toast";
 import prismadb from "@/prisma/prismadb";
 import { auth } from "@clerk/nextjs"
 import { redirect } from "next/navigation";
@@ -16,6 +17,7 @@ export default async function SetupLayout({
         where: {
             userId
         }
+    }).catch(()=>{
     })
 
     if(store) redirect(`/${store.id}`)

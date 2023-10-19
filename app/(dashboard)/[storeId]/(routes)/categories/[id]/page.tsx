@@ -8,14 +8,21 @@ const Category = async ({params}: {params : {id : string, storeId : string}}) =>
         where:{
             id: params.id
         }
-    })
+    }).catch(()=> ({
+      id : "",
+      storeId: "",
+    billboardId: "",
+    name: "",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    }))
 
 
 const billboards = await prismadb.billboard.findMany({
   where :{
     storeId : params.storeId 
   }
-});
+}).catch(()=>[]);
 
 
 

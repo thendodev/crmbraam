@@ -14,7 +14,7 @@ const Billboards = async ({params }: {params : {storeId : string}}) => {
     orderBy : {
       createdAt : 'desc'
     }
-  })
+  }) || [];
 
   const formattedBillboards : BillboardColumnProps[] = billboards.map((i)=>({
     id : i.id,

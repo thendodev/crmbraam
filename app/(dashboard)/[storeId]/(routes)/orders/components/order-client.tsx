@@ -10,7 +10,7 @@ import React from 'react'
 import { OrderColumnProps, columns } from './columns'
 
 interface OrderClientProps {
-  data : OrderColumnProps[]
+  data : OrderColumnProps[] 
 }
 
 const OrderClient : React.FC<OrderClientProps> = ({data}) => {

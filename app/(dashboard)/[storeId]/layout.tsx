@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster'
 import {redirect} from "next/navigation"
 import prismadb from '@/prisma/prismadb'
 import Navbar from '@/components/navbar'
+import { toast } from '@/components/ui/use-toast'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   description: 'dashboard',
 }
 
-export default async function Layout({
+export default async function DashboardLayout({
   children,
   params
 }: {
@@ -33,7 +34,7 @@ export default async function Layout({
       id: params.storeId,
       userId,
     }
-   });
+   }).catch(()=>toast({description: "There was an error while trying to get the store", title: "error"}));
 
   if (!store) {
     redirect('/');
