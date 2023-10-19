@@ -18,7 +18,6 @@ export default async function SetupLayout({
             userId
         }
     }).catch(()=>{
-        toast({description: "There was an error while trying to get the store", title: "error"})
     })
 
     if(store) redirect(`/${store.id}`)

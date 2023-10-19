@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'dashboard',
 }
 
-export default async function Layout({
+export default async function DashboardLayout({
   children,
   params
 }: {
